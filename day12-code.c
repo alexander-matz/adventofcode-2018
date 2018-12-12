@@ -104,8 +104,12 @@ int main(int argc, char** argv) {
   for (int i = 0; i < ngens; ++i) {
     printf("%2d: % *s%s\n", i, (i-ngens)*RADIUS, "", row_front.row);
     next_row(row_front, &row_back);
+    int matches = 0;
     for (int j = 0; j < nrules; ++j) {
-      apply_rule(row_front, row_back, rules[j]);
+      matches += apply_rule(row_front, row_back, rules[j]);
+    }
+    if (matches != row_front.len) {
+      printf("!! should have matched %d, did match %d\n", row_front.len, matches);
     }
     Row tmp = row_back;
     row_back = row_front;
