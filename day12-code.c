@@ -57,7 +57,7 @@ int next_row(Row rowin, Row *rowout) {
 int compare_rules(const void* left,const void* right) {
   Rule *a = (Rule*) left;
   Rule *b = (Rule*) right;
-  return strcmp(a->in, b->in);
+  return strncmp(a->in, b->in, RADIUS*2 + 1);
 }
 
 int main(int argc, char** argv) {
@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
 
   int ngens = 20;
   for (int i = 0; i < ngens; ++i) {
-    printf("%2d: % *s%s\n", i, (i-ngens)*RADIUS, "", row_front.row);
+    //printf("%2d: % *s%s\n", i, (i-ngens)*RADIUS, "", row_front.row);
     next_row(row_front, &row_back);
     int matches = 0;
     for (int j = 0; j < nrules; ++j) {
@@ -115,7 +115,7 @@ int main(int argc, char** argv) {
     row_back = row_front;
     row_front = tmp;
   }
-  printf("%2d: % *s%s\n", ngens, (ngens-ngens)*RADIUS, "", row_front.row);
+  //printf("%2d: % *s%s\n", ngens, (ngens-ngens)*RADIUS, "", row_front.row);
 
   int sum = 0;
   for (int i = 0; i < row_front.len; ++i) {
