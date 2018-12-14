@@ -1,4 +1,5 @@
-EXES=day8-code day9-code day10-code day11-code day12-code day13-code
+EXES=day8-code day9-code day10-code day11-code day12-code day13-code \
+     day14-code
 CFLAGS=-std=c99 -g
 CXXFLAGS=-std=c++11
 
